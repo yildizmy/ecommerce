@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <changeSet id="001-load-user-data" author="muratyildiz">
+        <loadData file="classpath:db/data/users.csv" tableName="user">
+            <column name="id" type="NUMERIC"/>
+            <column name="email" type="STRING"/>
+            <column name="password" type="STRING"/>
+            <column name="first_name" type="STRING"/>
+            <column name="last_name" type="STRING"/>
+            <column name="phone" type="STRING"/>
+            <column name="created_at" type="DATE"/>
+            <column name="updated_at" type="DATE"/>
+            <column name="active" type="BOOLEAN"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="002-load-address-data" author="muratyildiz">
+        <loadData file="classpath:db/data/addresses.csv" tableName="address">
+            <column name="id" type="NUMERIC"/>
+            <column name="street" type="STRING"/>
+            <column name="city" type="STRING"/>
+            <column name="country" type="STRING"/>
+            <column name="zip_code" type="STRING"/>
+            <column name="user_id" type="NUMERIC"/>
+            <column name="created_at" type="DATE"/>
+            <column name="updated_at" type="DATE"/>
+            <column name="active" type="BOOLEAN"/>
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

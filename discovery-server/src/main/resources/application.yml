@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: discovery-server
+  config:
+    import: "optional:configserver:http://configuser:configpass@localhost:8888"

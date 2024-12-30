@@ -1,0 +1,124 @@
+# shared configuration for all services
+spring:
+  main:
+    banner-mode: console
+  banner:
+    location: classpath:/banner.txt
+  output:
+    ansi:
+      enabled: always
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format-sql: true
+  datasource:
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      idle-timeout: 300000
+      connection-timeout: 20000
+  liquibase:
+    enabled: true
+  cache:
+    type: hazelcast
+  kafka:
+    bootstrap-servers: ${KAFKA_SERVERS:localhost:9092}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        acks: all
+        retries: 3
+    consumer:
+      group-id: ${spring.application.name}-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "com.github.yildizmy.*"
+        isolation.level: read_committed
+
+hazelcast:
+  network:
+    join:
+      multicast:
+        enabled: true
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      default-zone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  instance:
+    prefer-ip-address: true
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: BASIC
+  circuitbreaker:
+    enabled: true
+
+# todo: implement later
+# for service-to-service communication
+#resilience4j:
+#  circuitbreaker:
+#    instances:
+#      default:
+#        slidingWindowSize: 100
+#        permittedNumberOfCallsInHalfOpenState: 10
+#        failureRateThreshold: 50
+#        waitDurationInOpenState: 10000
+#  retry:
+#    instances:
+#      default:
+#        maxRetryAttempts: 3
+#        waitDuration: 1s
+#        enableExponentialBackoff: true
+#        exponentialBackoffMultiplier: 2
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: never
+
+logging:
+  file:
+    name: './logs/application.log'
+    logback:
+      rollingpolicy:
+        max-file-size: 10MB
+        total-size-cap: 50MB
+        max-history: 30
+        clean-history-on-start: true
+  pattern:
+    console: '%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){blue} %clr(%-5p) %clr(${PID}){faint} %clr(---){faint} %clr([%8.15t]){faint} %clr(%-40.40logger{0}){cyan} %clr(:){faint} %clr(%m){faint}%n'
+    file: '%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n'
+  level:
+    root: info
+    com.github.yildizmy: debug
+    org.springframework: info
+    org.hibernate: warn
+    org.springframework.security: info
+    com.netflix.eureka: warn
+    com.netflix.discovery: warn
+    org.springframework.cloud.gateway: info
+
+# todo: implement later
+# for security
+#jwt:
+#  secret: ${JWT_SECRET:404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970}
+#  expiration: 86400000 # 24 hours

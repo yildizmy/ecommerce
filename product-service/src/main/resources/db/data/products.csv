@@ -1,0 +1,51 @@
+id,name,description,price,category,image_url,brand_id,merchant_id,created_at,updated_at,active
+1,Apple iPhone 14,Latest Apple iPhone with A16 Bionic chip,999.99,ELECTRONICS,http://example.com/iphone14.jpg,1,8,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+2,Samsung Galaxy S23,Newest Galaxy smartphone with Snapdragon 8 Gen 1,849.99,ELECTRONICS,http://example.com/galaxys23.jpg,2,5,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+3,MacBook Pro 16,16-inch MacBook Pro with M1 Max chip,2499.99,ELECTRONICS,http://example.com/macbookpro16.jpg,1,5,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+4,Dell XPS 13,High-performance laptop with 11th Gen Intel Core,1299.99,ELECTRONICS,http://example.com/dellxps13.jpg,3,31,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+5,Sony WH-1000XM5,Noise-canceling over-ear headphones,349.99,ELECTRONICS,http://example.com/wh1000xm5.jpg,4,1,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+6,Bose SoundLink Revolve,Portable Bluetooth speaker with 360-degree sound,199.99,ELECTRONICS,http://example.com/soundlinkrevolve.jpg,5,3,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+7,Canon EOS R5,Professional mirrorless camera with 45MP sensor,3899.99,ELECTRONICS,http://example.com/eosr5.jpg,8,48,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+8,Nike Air Max 270,Comfortable and stylish running shoes,149.99,CLOTHING,http://example.com/airmax270.jpg,6,25,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+9,Adidas Ultraboost,High-performance running shoes with Boost cushioning,179.99,CLOTHING,http://example.com/ultraboost.jpg,7,21,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+10,Levi's 501 Original,Classic straight fit jeans,59.99,CLOTHING,http://example.com/levis501.jpg,9,34,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+11,North Face Jacket,Waterproof and windproof jacket,199.99,CLOTHING,http://example.com/northfacejacket.jpg,10,5,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+12,Patagonia T-Shirt,Organic cotton t-shirt,39.99,CLOTHING,http://example.com/patagoniatshirt.jpg,11,6,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+13,Columbia Hiking Boots,Durable and comfortable hiking boots,129.99,CLOTHING,http://example.com/columbiahikingboots.jpg,12,10,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+14,Under Armour Shorts,Breathable and lightweight shorts,29.99,CLOTHING,http://example.com/underarmourshorts.jpg,13,26,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+15,The Great Gatsby,F. Scott Fitzgerald's classic novel,10.99,BOOKS,http://example.com/greatgatsby.jpg,14,16,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+16,To Kill a Mockingbird,Harper Lee's Pulitzer Prize-winning novel,9.99,BOOKS,http://example.com/tokillamockingbird.jpg,15,14,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+17,1984,George Orwell's dystopian novel,12.99,BOOKS,http://example.com/1984.jpg,16,33,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+18,Pride and Prejudice,Jane Austen's romantic novel,11.99,BOOKS,http://example.com/prideandprejudice.jpg,17,9,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+19,The Catcher in the Rye,J.D. Salinger's coming-of-age novel,8.99,BOOKS,http://example.com/catcherintherye.jpg,18,4,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+20,The Hobbit,J.R.R. Tolkien's fantasy novel,14.99,BOOKS,http://example.com/thehobbit.jpg,19,5,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+21,Harry Potter and the Sorcerer's Stone,J.K. Rowling's first book in the Harry Potter series,15.99,BOOKS,http://example.com/harrypotter1.jpg,20,4,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+22,Car Battery,High-performance car battery,89.99,AUTOMOTIVE,http://example.com/carbattery.jpg,21,42,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+23,Engine Oil,Premium synthetic engine oil,29.99,AUTOMOTIVE,http://example.com/engineoil.jpg,22,36,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+24,Tire Pressure Gauge,Accurate digital tire pressure gauge,14.99,AUTOMOTIVE,http://example.com/tirepressuregauge.jpg,23,28,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+25,Car Wash Kit,Complete car cleaning kit,49.99,AUTOMOTIVE,http://example.com/carwashkit.jpg,24,41,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+26,Windshield Wipers,Durable all-weather windshield wipers,19.99,AUTOMOTIVE,http://example.com/windshieldwipers.jpg,25,23,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+27,Jumper Cables,Heavy-duty jumper cables,24.99,AUTOMOTIVE,http://example.com/jumpercables.jpg,26,20,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+28,Car Vacuum Cleaner,Portable and powerful car vacuum cleaner,39.99,AUTOMOTIVE,http://example.com/carvacuum.jpg,27,3,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+29,Dyson V11 Torque Drive,Cordless vacuum cleaner with powerful suction,699.99,HOME,http://example.com/v11torquedrive.jpg,14,45,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+30,Instant Pot Duo 7-in-1,Multi-use pressure cooker with 7 functions,99.99,HOME,http://example.com/instantpotduo.jpg,15,46,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+31,KitchenAid Stand Mixer,Versatile stand mixer with 5-quart bowl,399.99,HOME,http://example.com/kitchenaidstandmixer.jpg,16,28,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+32,Roomba i7+,Robot vacuum with automatic dirt disposal,799.99,HOME,http://example.com/roombai7.jpg,21,7,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+33,Philips Sonicare DiamondClean,Electric toothbrush with smart sensor technology,199.99,HOME,http://example.com/diamondclean.jpg,22,29,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+34,Oral-B Genius Pro 8000,Electric toothbrush with Bluetooth connectivity,179.99,HOME,http://example.com/geniuspro8000.jpg,23,37,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+35,Miele Complete C3,Canister vacuum cleaner with HEPA filtration,999.99,HOME,http://example.com/completec3.jpg,28,39,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+36,Fitbit Charge 5,Advanced fitness and health tracker,179.99,SPORTS,http://example.com/fitbitcharge5.jpg,17,12,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+37,Garmin Forerunner 945,High-end GPS running watch with music,599.99,SPORTS,http://example.com/forerunner945.jpg,18,35,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+38,Apple Watch Series 8,Smartwatch with advanced health features,399.99,SPORTS,http://example.com/applewatch8.jpg,1,34,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+39,Samsung Galaxy Watch 4,Smartwatch with fitness tracking,349.99,SPORTS,http://example.com/galaxywatch4.jpg,2,25,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+40,Nike Dri-FIT T-Shirt,Moisture-wicking athletic t-shirt,29.99,SPORTS,http://example.com/nikedrifit.jpg,29,28,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+41,Adidas Running Shorts,Lightweight running shorts,34.99,SPORTS,http://example.com/adidasrunningshorts.jpg,30,4,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+42,Under Armour Hoodie,Comfortable athletic hoodie,49.99,SPORTS,http://example.com/underarmourhoodie.jpg,31,36,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+43,Yoga Mat,Non-slip yoga mat for home workouts,25.99,SPORTS,http://example.com/yogamat.jpg,32,16,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+44,GoPro HERO10,Waterproof action camera with 5.3K60 video,499.99,OTHER,http://example.com/hero10.jpg,19,40,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+45,DJI Air 2S,Drone with 1-inch CMOS sensor and 5.4K video,999.99,OTHER,http://example.com/air2s.jpg,20,4,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+46,Logitech MX Master 3,Advanced wireless mouse with ergonomic design,99.99,OTHER,http://example.com/mxmaster3.jpg,24,30,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+47,Anker PowerCore 26800,Portable charger with 26800mAh capacity,59.99,OTHER,http://example.com/powercore26800.jpg,25,40,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+48,Apple AirPods Pro,Noise-canceling wireless earbuds,249.99,OTHER,http://example.com/airpodspro.jpg,1,8,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+49,Beats Studio3,Wireless over-ear headphones with ANC,349.99,OTHER,http://example.com/studio3.jpg,30,44,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+50,Sonos One,Smart speaker with Alexa built-in,199.99,OTHER,http://example.com/sonosone.jpg,29,7,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True

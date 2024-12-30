@@ -1,0 +1,1 @@
+# no need an application config as the common module is a library that other services depend on

@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: api-gateway
+  config: # business services and api-gateway need config server reference
+    import: "optional:configserver:http://configuser:configpass@localhost:8888"
+
+    # todo: update by reading from env variables or encrypt via Jasypy >>>
+    # import: "optional:configserver:http://${CONFIG_SERVER_USERNAME}:${CONFIG_SERVER_PASSWORD}@config-server:8888"

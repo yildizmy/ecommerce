@@ -1,0 +1,97 @@
+# todo: Additional useful configurations like CORS, rate limiting, or circuit breaker could be added based on requirements
+
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      forward-headers-strategy: framework
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+
+       # todo: implement later
+#      # for security >>>>>>>>>>
+#      default-filters:
+#        - DedupeResponseHeader=Access-Control-Allow-Origin
+#      global-cors:
+#        cors-configurations:
+#          '[/**]':
+#            allowedOrigins: "*"
+#            allowedMethods: "*"
+#            allowedHeaders: "*"
+#      # <<<<<<<<<<<<<<<<<<<<<<<
+
+
+      # todo: fallback url? page, etc?
+      routes:
+        - id: product-service
+          uri: lb://product-service
+          predicates:
+            - Path=/api/products/**
+#          filters:
+#            - name: CircuitBreaker
+#              args:
+#                name: productService
+#                fallback-uri: forward:/fallback/products
+        - id: order-service
+          uri: lb://order-service
+          predicates:
+            - Path=/api/orders/**
+#          filters:
+#            - name: CircuitBreaker
+#              args:
+#                name: orderService
+#                fallback-uri: forward:/fallback/orders
+        - id: payment-service
+          uri: lb://payment-service
+          predicates:
+            - Path=/api/payments/**
+#          filters:
+#            - name: CircuitBreaker
+#              args:
+#                name: paymentService
+#                fallback-uri: forward:/fallback/payments
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/api/users/**
+#          filters:
+#            - name: CircuitBreaker
+#              args:
+#                name: userService
+#                fallback-uri: forward:/fallback/users
+        - id: inventory-service
+          uri: lb://inventory-service
+          predicates:
+            - Path=/api/inventory/**
+#          filters:
+#            - name: CircuitBreaker
+#              args:
+#                name: inventoryService
+#                fallback-uri: forward:/fallback/inventory
+        - id: notification-service
+          uri: lb://notification-service
+          predicates:
+            - Path=/api/notifications/**
+#          filters:
+#            - name: CircuitBreaker
+#              args:
+#                name: notificationService
+#                fallback-uri: forward:/fallback/notifications
+
+
+# todo: implement later
+# for gateway routing
+#resilience4j-circuitbreaker:
+#  configs:
+#    default:
+#      sliding-window-size: 10
+#      minimum-number-of-calls: 5
+#      permitted-number-of-calls-in-half-open-state: 3
+#      failure-rate-threshold: 50
+#      wait-duration-in-open-state: 5s

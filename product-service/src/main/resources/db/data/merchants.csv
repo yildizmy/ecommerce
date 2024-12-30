@@ -1,0 +1,51 @@
+id,name,email,phone,company_name,created_at,updated_at,active
+1,Best Buy,bestbuy@example.com,-1355,Best Buy Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,False
+2,Target,target@example.com,-1356,Target Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+3,Walmart,walmart@example.com,-1357,Walmart Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,False
+4,Costco,costco@example.com,-1358,Costco Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,False
+5,IKEA,ikea@example.com,-1359,IKEA Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,False
+6,Macy's,macy's@example.com,-1360,Macy's Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+7,Sephora,sephora@example.com,-1361,Sephora Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+8,Home Depot,homedepot@example.com,-1362,Home Depot Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,False
+9,Lowe's,lowe's@example.com,-1363,Lowe's Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+10,CVS,cvs@example.com,-1364,CVS Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,False
+11,Walgreens,walgreens@example.com,-1365,Walgreens Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+12,Kroger,kroger@example.com,-1366,Kroger Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+13,Safeway,safeway@example.com,-1367,Safeway Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+14,Aldi,aldi@example.com,-1368,Aldi Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,False
+15,Trader Joe's,traderjoe's@example.com,-1369,Trader Joe's Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,False
+16,Whole Foods,wholefoods@example.com,-1370,Whole Foods Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+17,Amazon Store,amazonstore@example.com,-1371,Amazon Store Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,False
+18,eBay Shop,ebayshop@example.com,-1372,eBay Shop Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+19,Newegg,newegg@example.com,-1373,Newegg Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+20,GameStop,gamestop@example.com,-1374,GameStop Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,False
+21,Petco,petco@example.com,-1375,Petco Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,False
+22,PetSmart,petsmart@example.com,-1376,PetSmart Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+23,Wayfair,wayfair@example.com,-1377,Wayfair Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+24,Overstock,overstock@example.com,-1378,Overstock Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+25,Zappos,zappos@example.com,-1379,Zappos Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+26,Nordstrom,nordstrom@example.com,-1380,Nordstrom Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+27,Bloomingdale's,bloomingdale's@example.com,-1381,Bloomingdale's Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+28,JCPenney,jcpenney@example.com,-1382,JCPenney Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+29,Kohl's,kohl's@example.com,-1383,Kohl's Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,False
+30,Dillard's,dillard's@example.com,-1384,Dillard's Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,False
+31,Office Depot,officedepot@example.com,-1385,Office Depot Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+32,Staples,staples@example.com,-1386,Staples Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,False
+33,Barnes & Noble,barnes&noble@example.com,-1387,Barnes & Noble Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,False
+34,Book Depository,bookdepository@example.com,-1388,Book Depository Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+35,Toys R Us,toysrus@example.com,-1389,Toys R Us Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+36,LEGO Store,legostore@example.com,-1390,LEGO Store Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+37,Adorama,adorama@example.com,-1391,Adorama Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+38,B&H Photo,b&hphoto@example.com,-1392,B&H Photo Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,False
+39,REI,rei@example.com,-1393,REI Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+40,Lululemon,lululemon@example.com,-1394,Lululemon Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,False
+41,Anthropologie,anthropologie@example.com,-1395,Anthropologie Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,False
+42,Urban Outfitters,urbanoutfitters@example.com,-1396,Urban Outfitters Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+43,Forever 21,forever21@example.com,-1397,Forever 21 Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,False
+44,American Eagle,americaneagle@example.com,-1398,American Eagle Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+45,Abercrombie & Fitch,abercrombie&fitch@example.com,-1399,Abercrombie & Fitch Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+46,Hollister,hollister@example.com,-1400,Hollister Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+47,Victoria's Secret,victoria'ssecret@example.com,-1401,Victoria's Secret Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,False
+48,Bath & Body Works,bath&bodyworks@example.com,-1402,Bath & Body Works Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,False
+49,Pandora,pandora@example.com,-1403,Pandora Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+50,Claire's,claire's@example.com,-1404,Claire's Inc.,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True

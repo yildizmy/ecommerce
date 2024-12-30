@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <changeSet id="001-load-brand-data" author="muratyildiz">
+        <loadData file="classpath:db/data/brands.csv" tableName="brand">
+            <column name="id" type="NUMERIC"/>
+            <column name="name" type="STRING"/>
+            <column name="description" type="STRING"/>
+            <column name="logo_url" type="STRING"/>
+            <column name="created_at" type="DATE"/>
+            <column name="updated_at" type="DATE"/>
+            <column name="active" type="BOOLEAN"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="002-load-merchant-data" author="muratyildiz">
+        <loadData file="classpath:db/data/merchants.csv" tableName="merchant">
+            <column name="id" type="NUMERIC"/>
+            <column name="name" type="STRING"/>
+            <column name="email" type="STRING"/>
+            <column name="phone" type="STRING"/>
+            <column name="company_name" type="STRING"/>
+            <column name="created_at" type="DATE"/>
+            <column name="updated_at" type="DATE"/>
+            <column name="active" type="BOOLEAN"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="003-load-product-data" author="muratyildiz">
+        <loadData file="classpath:db/data/products.csv" tableName="product">
+            <column name="id" type="NUMERIC"/>
+            <column name="name" type="STRING"/>
+            <column name="description" type="STRING"/>
+            <column name="price" type="NUMERIC"/>
+            <column name="category" type="STRING"/>
+            <column name="image_url" type="STRING"/>
+            <column name="brand_id" type="NUMERIC"/>
+            <column name="merchant_id" type="NUMERIC"/>
+            <column name="created_at" type="DATE"/>
+            <column name="updated_at" type="DATE"/>
+            <column name="active" type="BOOLEAN"/>
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

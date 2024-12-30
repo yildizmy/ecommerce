@@ -1,0 +1,51 @@
+id,street,city,country,zip_code,user_id,created_at,updated_at,active
+1,68123 Edwards Pass,Kimberlyview,Grenada,2071,38,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+2,011 Laura Springs,West Amandachester,Hong Kong,66653,14,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+3,8825 Moore Throughway,Sabrinaton,Uruguay,30761,24,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+4,024 Matthews Points,South Erik,Barbados,51528,40,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+5,150 Adams Causeway,South Sydneyborough,United States Minor Outlying Islands,88818,42,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+6,90998 Sarah Heights Apt. 762,Johnsonchester,Marshall Islands,36669,13,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+7,561 Michael Stravenue,North Abigail,Honduras,21153,34,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+8,694 Robert Alley,Port Ashleyborough,United States of America,37628,41,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+9,2349 Crawford Bypass,North Sherry,Ireland,76487,21,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+10,905 White Points,Lake George,Fiji,76568,27,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+11,5080 Salas Squares,East Meghanfurt,Kyrgyz Republic,55294,29,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+12,738 Patterson Corner,Lake Jack,Netherlands Antilles,97065,25,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+13,9008 Franklin Cape Apt. 840,Jillmouth,Dominica,13065,19,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+14,377 Payne Points Apt. 910,Johnsonchester,Congo,71805,38,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+15,4449 Arroyo Circle Suite 285,West Zachary,Nicaragua,90041,35,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+16,69715 Wallace Roads Suite 423,East Richard,Dominican Republic,4823,28,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+17,22622 Maria Mission Apt. 243,East Jeffreyville,Turks and Caicos Islands,62702,29,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+18,036 Page Dam,Barrettbury,Holy See (Vatican City State),2969,20,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+19,207 Shelton Well,East Melissabury,Mexico,32435,50,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+20,6567 Schmidt Lights,Loriview,France,21503,17,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+21,847 Mathis Radial Suite 651,West Jenniferside,Lithuania,80517,1,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+22,36655 Holly Ville Suite 564,Williamsshire,Tanzania,42097,16,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+23,471 Jessica Tunnel Suite 710,Patrickfort,Ethiopia,14503,27,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+24,207 Zhang Ranch Suite 730,North Tinafort,France,11688,21,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+25,6131 Lisa Extension Suite 449,North Kenneth,Saint Helena,53329,7,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+26,654 Christina Mountains Apt. 934,Williamville,Morocco,34041,17,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+27,90136 Joshua Knoll Apt. 863,West Tylerchester,British Virgin Islands,41949,34,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+28,983 Julie Pine Suite 166,Laurafort,Samoa,8914,26,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+29,921 Watkins Stravenue Suite 891,Johnmouth,Madagascar,12321,21,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+30,266 Thomas Key,Edwardsberg,Nicaragua,20210,36,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+31,13212 Schwartz Plaza,Mollychester,Brazil,22880,48,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+32,043 Anderson Flat Suite 772,West Johnland,Oman,80386,34,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+33,9006 May Light,Joannafort,Tanzania,30692,26,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+34,9241 Gabriel Streets,Cartermouth,Anguilla,7724,43,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+35,7680 Love Causeway Suite 977,Derrickmouth,Myanmar,47397,35,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+36,1540 Nicole Gateway,Durhamburgh,Mali,60315,11,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+37,70589 Wilson Bridge Suite 991,Jonathanland,Reunion,90258,32,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+38,2375 Wiley Summit,Megantown,Bangladesh,50979,4,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+39,0417 Kenneth Port Apt. 596,Lake Danielleberg,Slovenia,19303,17,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+40,93935 Marquez Dale Suite 355,Hillbury,Mali,86999,24,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+41,0868 Douglas Course Apt. 999,New Kristinhaven,Spain,17553,41,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+42,98284 Anthony Locks Suite 719,South Leonardstad,Chad,19300,28,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+43,80704 Cook Village,West Brandonfurt,Sierra Leone,4829,26,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+44,509 Jay Square Apt. 291,Ericstad,Netherlands Antilles,81673,35,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+45,3497 Castillo Isle,Stevenland,Oman,64792,15,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+46,56227 Browning Way,Juarezfurt,Palau,19105,40,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+47,1072 Brian Trace Apt. 575,Simsshire,Cameroon,21813,46,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+48,3973 Savannah Garden Suite 990,Wilsonbury,Kuwait,45254,38,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+49,978 Michael Walk Apt. 340,North Stevenmouth,Cayman Islands,31810,2,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True
+50,844 Jimenez Rapids,Aguilarton,Burkina Faso,62988,5,2024-09-01 08:30:00.000,2024-09-05 12:30:00.000,True

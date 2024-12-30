@@ -1,0 +1,10 @@
+server:
+  port: 0
+
+spring:
+  application:
+    name: order-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/order_db
+    username: order_user
+    password: order_password

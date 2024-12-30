@@ -1,0 +1,18 @@
+server:
+  port: 0
+
+spring:
+  application:
+    name: user-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/user_db
+    username: user_user
+    password: user_password
+
+# todo: implement later
+#  # for security >>>>>>>>>>
+#  security:
+#    user:
+#      name: ${ADMIN_USERNAME:admin}
+#      password: ${ADMIN_PASSWORD:admin}
+#  # <<<<<<<<<<<<<<<<<<<<<<<

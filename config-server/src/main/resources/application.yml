@@ -1,0 +1,35 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-server
+  security:
+    user:
+      # todo: encrypt passwords
+      name: configuser
+      password: configpass
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native: # Need to set profile to "native": SPRING_PROFILES_ACTIVE=native
+          search-locations: classpath:/config/
+
+  # todo: apply security for config server and also update app prop in each service
+#  security:
+#    user:
+#      name: ${CONFIG_SERVER_USERNAME:configUser}
+#      password: ${CONFIG_SERVER_PASSWORD:configPass}
+
+management:
+  security:
+    enabled: false # todo: later provide security for actuator endpoints
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+#  endpoint:
+#    health:
+#      show-details: when_authorized

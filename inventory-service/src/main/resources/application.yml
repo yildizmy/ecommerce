@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: inventory-service
+  config:
+    import: "optional:configserver:http://configuser:configpass@localhost:8888"
+  liquibase:
+    # as the config server shouldn't have access to the database migration files, keep the changelog path in the service's local configuration
+    change-log: classpath:/db/changelog/db.changelog-master.xml

@@ -1,0 +1,177 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - ./init-scripts:/docker-entrypoint-initdb.d
+      - ecommerce_postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - ecommerce_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  zookeeper:
+    image: wurstmeister/zookeeper:latest
+    container_name: zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "2181:2181"
+    networks:
+      - ecommerce_network
+    healthcheck:
+      test: ["CMD-SHELL", "echo ruok | nc localhost 2181 | grep imok"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  kafka:
+    image: wurstmeister/kafka:latest
+    container_name: kafka
+    depends_on:
+      zookeeper:
+        condition: service_healthy
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:29092,PLAINTEXT_HOST://0.0.0.0:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    networks:
+      - ecommerce_network
+    healthcheck:
+      test: ["CMD-SHELL", "kafka-topics.sh --bootstrap-server localhost:9092 --list"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    container_name: kafka-ui
+    depends_on:
+      kafka:
+        condition: service_healthy
+    ports:
+      - "8090:8080"
+    environment:
+      KAFKA_CLUSTERS_0_NAME: local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:29092
+      KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
+    networks:
+      - ecommerce_network
+
+volumes:
+  ecommerce_postgres_data:
+
+networks:
+  ecommerce_network:
+    driver: bridge
+
+
+
+
+
+  # todo: add zipkin later with necessary gradele dependencies
+#  zipkin:
+#    image: openzipkin/zipkin-slim:latest
+#    ports:
+#      - "9411:9411"
+
+
+# todo: complete the following services
+
+#  config-server:
+#    build: ./config-server
+#    ports:
+#      - "8888:8888"
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=native
+#
+#  discovery-server:
+#    build: ./discovery-server
+#    ports:
+#      - "8761:8761"
+#    depends_on:
+#      - config-server
+#
+#  api-gateway:
+#    build: ./api-gateway
+#    ports:
+#      - "8080:8080"
+#    environment:
+#      - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
+#    depends_on:
+#      - discovery-server
+#      - config-server
+#
+#  product-service:
+#    build: ./product-service
+#    environment:
+#      - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
+#    depends_on:
+#      - postgres
+#      - kafka
+#      - discovery-server
+#      - config-server
+#
+#  order-service:
+#    build: ./order-service
+#    environment:
+#      - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
+#    depends_on:
+#      - postgres
+#      - kafka
+#      - discovery-server
+#      - config-server
+#
+#  payment-service:
+#    build: ./payment-service
+#    environment:
+#      - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
+#    depends_on:
+#      - postgres
+#      - kafka
+#      - discovery-server
+#      - config-server
+#
+#  user-service:
+#    build: ./user-service
+#    environment:
+#      - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
+#    depends_on:
+#      - postgres
+#      - kafka
+#      - discovery-server
+#      - config-server
+#
+#  inventory-service:
+#    build: ./inventory-service
+#    environment:
+#      - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
+#    depends_on:
+#      - postgres
+#      - kafka
+#      - discovery-server
+#      - config-server
+#
+#  notification-service:
+#    build: ./notification-service
+#    environment:
+#      - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
+#    depends_on:
+#      - kafka
