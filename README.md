@@ -1,4 +1,4 @@
-## e-commerce Platform [DRAFT: Work in Progress]
+## [DRAFT: Work in Progress] e-commerce Platform 
 
 A scalable, event-driven e-commerce platform built with Spring Boot microservices architecture. This platform provides a robust foundation for building and operating an enterprise-grade online retail system with high availability and fault tolerance.
 
