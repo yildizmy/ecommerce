@@ -35,6 +35,12 @@ subprojects {
         // Core dependencies for all services
         implementation("org.springframework.boot:spring-boot-starter-actuator")
         implementation("org.springframework.boot:spring-boot-devtools")
+
+        // Zipkin Reporter for Brave
+        implementation("org.springframework.boot:spring-boot-starter-actuator")
+        implementation("io.micrometer:micrometer-tracing-bridge-brave")
+        implementation("io.zipkin.reporter2:zipkin-reporter-brave")
+
         compileOnly("org.projectlombok:lombok")
         annotationProcessor("org.projectlombok:lombok")
         testImplementation("org.springframework.boot:spring-boot-starter-test")
