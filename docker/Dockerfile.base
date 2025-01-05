@@ -1,0 +1,55 @@
+# syntax=docker/dockerfile:1.4
+
+# Stage 1: Build stage
+FROM eclipse-temurin:21-jdk-alpine AS builder
+WORKDIR /app
+
+# Install curl for healthchecks
+RUN apk add --no-cache curl
+
+# Create non-root user
+RUN addgroup -S demogroup && adduser -S demo -G demogroup
+RUN chown -R demo:demogroup /app
+USER demo
+
+# Copy gradle files first for better layer caching
+COPY --chown=demo:demogroup gradle/ gradle/
+COPY --chown=demo:demogroup build.gradle.kts settings.gradle.kts gradle.properties gradlew ./
+
+# Download dependencies first (cached if no changes)
+RUN ./gradlew dependencies --no-daemon
+
+# Copy source code
+COPY --chown=demo:demogroup src/ src/
+
+# Build application
+RUN ./gradlew build -x test --no-daemon
+
+# Stage 2: Runtime
+FROM eclipse-temurin:21-jre-alpine
+WORKDIR /app
+
+# Add curl for healthcheck
+RUN apk add --no-cache curl
+
+# Create non-root user
+RUN addgroup -S demogroup && adduser -S demo -G demogroup
+USER demo
+
+ARG SERVICE_NAME
+ARG SERVER_PORT
+
+# Copy built application
+COPY --from=builder --chown=demo:demogroup /app/build/libs/*.jar app.jar
+
+# Add healthcheck
+HEALTHCHECK --interval=30s --timeout=3s --start-period=60s --retries=3 \
+    CMD curl -f http://localhost:${SERVER_PORT}/actuator/health || exit 1
+
+EXPOSE ${SERVER_PORT}
+
+# Configure JVM options
+ENV JAVA_OPTS="-XX:MaxRAMPercentage=75.0 -XX:InitialRAMPercentage=50.0 -XX:+UseG1GC"
+
+# Start application
+ENTRYPOINT ["sh", "-c", "java ${JAVA_OPTS} -jar app.jar"]
