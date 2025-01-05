@@ -1,8 +1,39 @@
+x-common-variables: &common-variables
+  SPRING_PROFILES_ACTIVE: prod
+  EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-server:8761/eureka/
+  MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://zipkin:9411/api/v2/spans
+  MANAGEMENT_TRACING_SAMPLING_PROBABILITY: 1.0
+  SPRING_CLOUD_CONFIG_URI: http://config-server:8888
+  KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+
+x-db-variables: &db-variables
+  SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/postgres
+  SPRING_DATASOURCE_USERNAME: postgres
+  SPRING_DATASOURCE_PASSWORD: postgres
+
+x-healthcheck: &healthcheck-common
+  interval: 30s
+  timeout: 10s
+  retries: 3
+
+x-service-common: &service-common
+  networks:
+    - ecommerce_network
+  restart: unless-stopped
+  deploy:
+    resources:
+      limits:
+        cpus: '0.50'
+        memory: 512M
+      reservations:
+        cpus: '0.25'
+        memory: 256M
+
 services:
   postgres:
+    <<: *service-common
     image: postgres:17-alpine
     container_name: postgres
-    restart: unless-stopped
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
@@ -12,15 +43,12 @@ services:
       - ecommerce_postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
-    networks:
-      - ecommerce_network
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      <<: *healthcheck-common
 
   zookeeper:
+    <<: *service-common
     image: wurstmeister/zookeeper:latest
     container_name: zookeeper
     environment:
@@ -28,15 +56,12 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
     ports:
       - "2181:2181"
-    networks:
-      - ecommerce_network
     healthcheck:
-      test: ["CMD-SHELL", "echo ruok | nc localhost 2181 | grep imok"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+      test: [ "CMD-SHELL", "echo ruok | nc localhost 2181 | grep imok" ]
+      <<: *healthcheck-common
 
   kafka:
+    <<: *service-common
     image: wurstmeister/kafka:latest
     container_name: kafka
     depends_on:
@@ -52,15 +77,12 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-    networks:
-      - ecommerce_network
     healthcheck:
-      test: ["CMD-SHELL", "kafka-topics.sh --bootstrap-server localhost:9092 --list"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+      test: [ "CMD-SHELL", "kafka-topics.sh --bootstrap-server localhost:9092 --list" ]
+      <<: *healthcheck-common
 
   kafka-ui:
+    <<: *service-common
     image: provectuslabs/kafka-ui:latest
     container_name: kafka-ui
     depends_on:
@@ -72,8 +94,221 @@ services:
       KAFKA_CLUSTERS_0_NAME: local
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:29092
       KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
-    networks:
-      - ecommerce_network
+
+  zipkin:
+    <<: *service-common
+    image: openzipkin/zipkin:latest
+    container_name: zipkin
+    ports:
+      - "9411:9411"
+    environment:
+      - STORAGE_TYPE=mem
+      - JAVA_OPTS=-Xms512m -Xmx512m
+    healthcheck:
+      test: [ "CMD", "wget", "--spider", "-q", "http://localhost:9411/health" ]
+      <<: *healthcheck-common
+
+  api-gateway:
+    <<: *service-common
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile
+    image: api-gateway:latest
+    container_name: api-gateway
+    ports:
+      - "8080:8080"
+    environment:
+      <<: *common-variables
+    depends_on:
+      discovery-server:
+        condition: service_healthy
+      config-server:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD", "wget", "--spider", "-q", "http://localhost:8080/actuator/health" ]
+      <<: *healthcheck-common
+
+  config-server:
+    <<: *service-common
+    build:
+      context: ./config-server
+      dockerfile: Dockerfile
+    image: config-server:latest
+    container_name: config-server
+    ports:
+      - "8888:8888"
+    environment:
+      - SPRING_PROFILES_ACTIVE=native
+      - SPRING_CLOUD_CONFIG_SERVER_NATIVE_SEARCH_LOCATIONS=file:/config/
+    volumes:
+      - ./config-server/src/main/resources/config:/config
+    healthcheck:
+      test: [ "CMD", "wget", "--spider", "-q", "http://localhost:8888/actuator/health" ]
+      <<: *healthcheck-common
+
+  discovery-server:
+    <<: *service-common
+    build:
+      context: ./discovery-server
+      dockerfile: Dockerfile
+    image: discovery-server:latest
+    container_name: discovery-server
+    ports:
+      - "8761:8761"
+    environment:
+      <<: *common-variables
+    depends_on:
+      config-server:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD", "wget", "--spider", "-q", "http://localhost:8761/actuator/health" ]
+      <<: *healthcheck-common
+
+  inventory-service:
+    <<: *service-common
+    build:
+      context: ./inventory-service
+      dockerfile: Dockerfile
+    image: inventory-service:latest
+    container_name: inventory-service
+    environment:
+      <<: *common-variables
+      <<: *db-variables
+    depends_on:
+      discovery-server:
+        condition: service_healthy
+      config-server:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD", "wget", "--spider", "-q", "http://localhost:8081/actuator/health" ]
+      <<: *healthcheck-common
+
+  notification-service:
+    <<: *service-common
+    build:
+      context: ./notification-service
+      dockerfile: Dockerfile
+    image: notification-service:latest
+    container_name: notification-service
+    environment:
+      <<: *common-variables
+      <<: *db-variables
+    depends_on:
+      discovery-server:
+        condition: service_healthy
+      config-server:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+      user-service:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD", "wget", "--spider", "-q", "http://localhost:8082/actuator/health" ]
+      <<: *healthcheck-common
+
+  order-service:
+    <<: *service-common
+    build:
+      context: ./order-service
+      dockerfile: Dockerfile
+    image: order-service:latest
+    container_name: order-service
+    environment:
+      <<: *common-variables
+      <<: *db-variables
+    depends_on:
+      discovery-server:
+        condition: service_healthy
+      config-server:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+      inventory-service:
+        condition: service_healthy
+      payment-service:
+        condition: service_healthy
+      user-service:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD", "wget", "--spider", "-q", "http://localhost:8083/actuator/health" ]
+      <<: *healthcheck-common
+
+  payment-service:
+    <<: *service-common
+    build:
+      context: ./payment-service
+      dockerfile: Dockerfile
+    image: payment-service:latest
+    container_name: payment-service
+    environment:
+      <<: *common-variables
+      <<: *db-variables
+    depends_on:
+      discovery-server:
+        condition: service_healthy
+      config-server:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+      user-service:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD", "wget", "--spider", "-q", "http://localhost:8084/actuator/health" ]
+      <<: *healthcheck-common
+
+  product-service:
+    <<: *service-common
+    build:
+      context: ./product-service
+      dockerfile: Dockerfile
+    image: product-service:latest
+    container_name: product-service
+    environment:
+      <<: *common-variables
+      <<: *db-variables
+    depends_on:
+      discovery-server:
+        condition: service_healthy
+      config-server:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD", "wget", "--spider", "-q", "http://localhost:8085/actuator/health" ]
+      <<: *healthcheck-common
+
+  user-service:
+    <<: *service-common
+    build:
+      context: ./user-service
+      dockerfile: Dockerfile
+    image: user-service:latest
+    container_name: user-service
+    environment:
+      <<: *common-variables
+      <<: *db-variables
+    depends_on:
+      discovery-server:
+        condition: service_healthy
+      config-server:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD", "wget", "--spider", "-q", "http://localhost:8086/actuator/health" ]
+      <<: *healthcheck-common
 
 volumes:
   ecommerce_postgres_data:
@@ -81,97 +316,3 @@ volumes:
 networks:
   ecommerce_network:
     driver: bridge
-
-
-
-
-
-  # todo: add zipkin later with necessary gradele dependencies
-#  zipkin:
-#    image: openzipkin/zipkin-slim:latest
-#    ports:
-#      - "9411:9411"
-
-
-# todo: complete the following services
-
-#  config-server:
-#    build: ./config-server
-#    ports:
-#      - "8888:8888"
-#    environment:
-#      - SPRING_PROFILES_ACTIVE=native
-#
-#  discovery-server:
-#    build: ./discovery-server
-#    ports:
-#      - "8761:8761"
-#    depends_on:
-#      - config-server
-#
-#  api-gateway:
-#    build: ./api-gateway
-#    ports:
-#      - "8080:8080"
-#    environment:
-#      - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
-#    depends_on:
-#      - discovery-server
-#      - config-server
-#
-#  product-service:
-#    build: ./product-service
-#    environment:
-#      - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
-#    depends_on:
-#      - postgres
-#      - kafka
-#      - discovery-server
-#      - config-server
-#
-#  order-service:
-#    build: ./order-service
-#    environment:
-#      - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
-#    depends_on:
-#      - postgres
-#      - kafka
-#      - discovery-server
-#      - config-server
-#
-#  payment-service:
-#    build: ./payment-service
-#    environment:
-#      - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
-#    depends_on:
-#      - postgres
-#      - kafka
-#      - discovery-server
-#      - config-server
-#
-#  user-service:
-#    build: ./user-service
-#    environment:
-#      - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
-#    depends_on:
-#      - postgres
-#      - kafka
-#      - discovery-server
-#      - config-server
-#
-#  inventory-service:
-#    build: ./inventory-service
-#    environment:
-#      - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
-#    depends_on:
-#      - postgres
-#      - kafka
-#      - discovery-server
-#      - config-server
-#
-#  notification-service:
-#    build: ./notification-service
-#    environment:
-#      - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
-#    depends_on:
-#      - kafka
