@@ -111,8 +111,8 @@ services:
   api-gateway:
     <<: *service-common
     build:
-      context: ./api-gateway
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./api-gateway/Dockerfile
     image: api-gateway:latest
     container_name: api-gateway
     ports:
@@ -131,8 +131,8 @@ services:
   config-server:
     <<: *service-common
     build:
-      context: ./config-server
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./config-server/Dockerfile
     image: config-server:latest
     container_name: config-server
     ports:
@@ -149,8 +149,8 @@ services:
   discovery-server:
     <<: *service-common
     build:
-      context: ./discovery-server
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./discovery-server/Dockerfile
     image: discovery-server:latest
     container_name: discovery-server
     ports:
@@ -167,8 +167,8 @@ services:
   inventory-service:
     <<: *service-common
     build:
-      context: ./inventory-service
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./inventory-service/Dockerfile
     image: inventory-service:latest
     container_name: inventory-service
     environment:
@@ -190,8 +190,8 @@ services:
   notification-service:
     <<: *service-common
     build:
-      context: ./notification-service
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./notification-service/Dockerfile
     image: notification-service:latest
     container_name: notification-service
     environment:
@@ -213,8 +213,8 @@ services:
   order-service:
     <<: *service-common
     build:
-      context: ./order-service
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./order-service/Dockerfile
     image: order-service:latest
     container_name: order-service
     environment:
@@ -242,8 +242,8 @@ services:
   payment-service:
     <<: *service-common
     build:
-      context: ./payment-service
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./payment-service/Dockerfile
     image: payment-service:latest
     container_name: payment-service
     environment:
@@ -267,8 +267,8 @@ services:
   product-service:
     <<: *service-common
     build:
-      context: ./product-service
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./product-service/Dockerfile
     image: product-service:latest
     container_name: product-service
     environment:
@@ -290,8 +290,8 @@ services:
   user-service:
     <<: *service-common
     build:
-      context: ./user-service
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./user-service/Dockerfile
     image: user-service:latest
     container_name: user-service
     environment:
