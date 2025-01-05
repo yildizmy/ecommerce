@@ -68,6 +68,19 @@ feign:
   circuitbreaker:
     enabled: true
 
+zipkin:
+  base-url: ${ZIPKIN_BASE_URL:http://localhost:9411}
+  enabled: true
+  sender:
+    type: web # use HTTP to send spans to Zipkin
+sleuth:
+  enabled: true
+  messaging:
+    kafka:
+      enabled: true # trace Kafka producers and consumers
+  sampler:
+    probability: 0.1
+
 # todo: implement later
 # for service-to-service communication
 #resilience4j:
@@ -87,13 +100,15 @@ feign:
 #        exponentialBackoffMultiplier: 2
 
 management:
-  endpoints:
-    web:
-      exposure:
-        include: health
-  endpoint:
-    health:
-      show-details: never
+  tracing:
+    sampling:
+      probability: 1.0 # should match spring.sleuth.sampler.probability
+  zipkin:
+    enabled: true
+    tracing:
+      endpoint: http://zipkin:9411/api/v2/spans
+  circuitbreakers:
+    enabled: true
 
 logging:
   file:
@@ -105,8 +120,8 @@ logging:
         max-history: 30
         clean-history-on-start: true
   pattern:
-    console: '%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){blue} %clr(%-5p) %clr(${PID}){faint} %clr(---){faint} %clr([%8.15t]){faint} %clr(%-40.40logger{0}){cyan} %clr(:){faint} %clr(%m){faint}%n'
-    file: '%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n'
+    console: '%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){blue} %clr(%-5p) %clr(${PID}){faint} %clr(---){faint} %clr([%8.15t]){faint} %clr(%-40.40logger{0}){cyan} %clr(:){faint} %clr(%m){faint} %clr([%X{traceId}:%X{spanId}]){yellow}%n'
+    file: '%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [%X{traceId}:%X{spanId}] %-5level %logger{36} - %msg%n'
   level:
     root: info
     com.github.yildizmy: debug
